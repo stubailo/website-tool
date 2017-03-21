@@ -3,6 +3,7 @@ var less = require('gulp-less');
 var path = require('path');
 var handlebars = require('gulp-compile-handlebars');
 var data = require('gulp-data');
+var fs = require('fs');
 
 console.log("CWD", process.cwd());
 
@@ -27,18 +28,32 @@ gulp.task('public', () => {
 });
 
 gulp.task('html', () => {
-  // Because we use nodemon to watch, this require re-evaluates on every single rebuild
-  const data = require(path.join(projDir, 'data.js'));
+  let data = {};
+
+  try {
+    // Because we use nodemon to watch, this require re-evaluates on every single rebuild
+    data = require(path.join(projDir, 'data.js'));
+  } catch (e) {
+    console.info('data.js not found, skipping.');
+  }
 
   // Set up node env
   data.NODE_ENV = process.NODE_ENV || 'development';
 
+  // Directories for partials
+  const batch = [];
+
+  // Partials used by the site builder, like __includes
+  batch.push(path.join(genDir, 'assets'));
+
+  // Partials in the site source
+  const templateDir = path.join(projDir, 'templates');
+  if (fs.existsSync(templateDir)) {
+    batch.push(templateDir);
+  }
+
   const options = {
-    batch: [
-      // Partials from the site builder
-      path.join(genDir, 'assets'),
-      path.join(projDir, 'templates'),
-    ],
+    batch,
     helpers: {
       env: (desiredEnv) => {
         return data.NODE_ENV === desiredEnv;
