@@ -1,0 +1,19 @@
+{
+  "name": "make-a-website",
+  "version": "1.0.0",
+  "description": "Make a website with Handlebars, LESS, and JS modules",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stubailo/make-a-website.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stubailo/make-a-website/issues"
+  },
+  "homepage": "https://github.com/stubailo/make-a-website#readme"
+}
