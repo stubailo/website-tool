@@ -1,5 +1,5 @@
 {
-  "name": "make-a-website",
+  "name": "maw",
   "version": "0.1.0",
   "description": "Make a website with Handlebars, LESS, and JS modules",
   "main": "index.js",

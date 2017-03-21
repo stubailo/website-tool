@@ -8,7 +8,11 @@ const optionDefinitions = [
   { name: 'command', type: String, defaultOption: true },
 ]
 
-const { command } = commandLineArgs(optionDefinitions)
+const { command } = commandLineArgs(optionDefinitions);
+
+shell.pushd(process.cwd());
+const binPath = shell.exec('npm bin', { silent: true }).stdout.trim();
+shell.popd();
 
 if (command === 'dev') {
   shell.exec(`${bin('concurrently')} "${bin('live-server')} build" "${__filename} watch"`);
@@ -21,7 +25,7 @@ if (command === 'dev') {
 }
 
 function bin(command) {
-  return path.join(__dirname, '..', 'node_modules', '.bin', command);
+  return path.join(binPath, command);
 }
 
 function cwd(p) {
