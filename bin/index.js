@@ -17,11 +17,9 @@ shell.popd();
 if (command === 'dev') {
   shell.exec(`${bin('concurrently')} "${bin('live-server')} build" "${__filename} watch"`);
 } else if (command === 'watch') {
-  // We have to pass a space into the '-e' extension option of nodemon, otherwise it is completely
-  // ignored
-  shell.exec(`${bin('nodemon')} --watch src -e \" \" --exec "${__filename} build"`);
+  shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd . watch`);
 } else if (command === 'build') {
-  shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd .`)
+  shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd .`);
 }
 
 function bin(command) {
