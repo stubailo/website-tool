@@ -1,4 +1,10 @@
+# Make a Website
 
+```
+npm install maw
+```
+
+Make a static HTML page with some CSS, JS, and assets. No BS.
 
 ## Using the tool
 
@@ -46,3 +52,4 @@ And then you can use it with:
 - [ ] Minification
 - [ ] Don't use nodemon, use Gulp to watch files individually for better efficiency
 - [ ] Make it possible to set root directory to either the root of the repo or something other than `/src`
+- [ ] Support multiple output HTML files/pages, perhaps by crawling all HTML in `/src`.
