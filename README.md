@@ -46,10 +46,14 @@ And then you can use it with:
 </div>
 ```
 
+## Important
+
+- [ ] Support multiple output HTML files/pages, perhaps by crawling all HTML in `/src`.
+- [ ] Don't use nodemon, use Gulp to watch files individually for better efficiency
+
 ## TODO
 
 - [ ] Do JavaScript bundling for the client
 - [ ] Minification
-- [ ] Don't use nodemon, use Gulp to watch files individually for better efficiency
 - [ ] Make it possible to set root directory to either the root of the repo or something other than `/src`
-- [ ] Support multiple output HTML files/pages, perhaps by crawling all HTML in `/src`.
+
