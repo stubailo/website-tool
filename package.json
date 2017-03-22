@@ -1,6 +1,6 @@
 {
   "name": "maw",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Make a website with Handlebars, LESS, and JS modules",
   "main": "index.js",
   "scripts": {
