@@ -46,6 +46,10 @@ And then you can use it with:
 </div>
 ```
 
+### /index.js
+
+`index.js` is a JavaScript entry point module that will be compiled with Webpack. Currently, no loaders are enabled.
+
 ## Important
 
 - [ ] Support multiple output HTML files/pages, perhaps by crawling all HTML in `/src`.
