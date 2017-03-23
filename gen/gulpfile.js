@@ -8,37 +8,40 @@ var fs = require('fs');
 console.log("CWD", process.cwd());
 
 // Directory with project files provided by consumer
-const projDir = path.join(process.cwd(), 'src');
+const projDir = process.cwd();
 
 // Directory with assets for generator
 const genDir = __dirname;
 
 gulp.task('default', ['less', 'html', 'public']);
 
-const LESS_INDEX = './src/index.less';
-const LESS_IMPORTS = './src/less/**/*';
+const LESS_INDEX = 'index.less';
+const LESS_IMPORTS = 'less/**/*';
 gulp.task('less', () => {
   return gulp.src(LESS_INDEX)
     .pipe(less({
       paths: [ path.join(projDir, 'less') ]
     }))
-    .pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest('../build/'));
 });
 
-const PUBLIC_DIR = './src/public/**/*';
+const PUBLIC_DIR = 'public/**/*';
 gulp.task('public', () => {
-  gulp.src(PUBLIC_DIR).pipe(gulp.dest('./build/'));
+  gulp.src(PUBLIC_DIR).pipe(gulp.dest('../build/'));
 });
 
 const DATA_PATH = path.join(projDir, 'data.js');
+console.log('DATA', DATA_PATH);
 const TEMPLATES_PATH = path.join(projDir, 'templates');
-const HTML_INDEX = './src/index.html';
+const HTML_INDEX = path.join(projDir, 'index.html');
 gulp.task('html', () => {
   let data = {};
 
   try {
-    // Because we use nodemon to watch, this require re-evaluates on every single rebuild
+    // We need to clear the cache
+    delete require.cache[require.resolve(DATA_PATH)];
     data = require(DATA_PATH);
+    console.log('THE DATA', data);
   } catch (e) {
     console.info('data.js not found, skipping.');
   }
@@ -50,6 +53,7 @@ gulp.task('html', () => {
   const batch = [];
 
   // Partials used by the site builder, like __includes
+  console.log('GEN DIR', genDir);
   batch.push(path.join(genDir, 'assets'));
 
   // Partials in the site source
@@ -68,10 +72,11 @@ gulp.task('html', () => {
 
   return gulp.src(HTML_INDEX)
     .pipe(handlebars(data, options))
-    .pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('../build'));
 })
 
-gulp.task('watch', () => {
+gulp.task('watch', ['less', 'public', 'html'], () => {
+  console.log('RUNNING GULP')
   gulp.watch([
     LESS_INDEX,
     LESS_IMPORTS

@@ -10,16 +10,18 @@ const optionDefinitions = [
 
 const { command } = commandLineArgs(optionDefinitions);
 
-shell.pushd(process.cwd());
+shell.pushd(__dirname);
 const binPath = shell.exec('npm bin', { silent: true }).stdout.trim();
 shell.popd();
 
 if (command === 'dev') {
-  shell.exec(`${bin('concurrently')} "${bin('live-server')} build" "${__filename} watch"`);
+  shell.exec(`${bin('concurrently')} "${bin('live-server')} ../build" "${__filename} watch" "${__filename} webpack"`);
 } else if (command === 'watch') {
   shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd . watch`);
 } else if (command === 'build') {
   shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd .`);
+} else if (command === 'webpack') {
+  shell.exec(`${bin('webpack')} --config ${pkg('gen/webpack.config.js')} --watch`);
 }
 
 function bin(command) {
