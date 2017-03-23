@@ -15,13 +15,15 @@ const binPath = shell.exec('npm bin', { silent: true }).stdout.trim();
 shell.popd();
 
 if (command === 'dev') {
-  shell.exec(`${bin('concurrently')} "${bin('live-server')} ../build" "${__filename} watch" "${__filename} webpack"`);
+  shell.exec(`${bin('concurrently')} "${__filename} display" "${__filename} watch" "${__filename} webpack"`);
 } else if (command === 'watch') {
   shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd . watch`);
 } else if (command === 'build') {
   shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd .`);
 } else if (command === 'webpack') {
   shell.exec(`${bin('webpack')} --config ${pkg('gen/webpack.config.js')} --watch`);
+} else if (command === 'display') {
+  shell.exec(`sleep 1 && ${bin('live-server')} ../build`);
 } else if (command === 'version') {
   console.log(require('../package.json').version);
 }

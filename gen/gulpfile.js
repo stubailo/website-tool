@@ -33,7 +33,7 @@ gulp.task('public', () => {
 const DATA_PATH = path.join(projDir, 'data.js');
 console.log('DATA', DATA_PATH);
 const TEMPLATES_PATH = path.join(projDir, 'templates');
-const HTML_INDEX = path.join(projDir, 'index.html');
+const HTML_INDEX = path.join(projDir, '**', 'index.html');
 gulp.task('html', () => {
   let data = {};
 
