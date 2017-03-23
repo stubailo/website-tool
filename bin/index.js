@@ -22,6 +22,8 @@ if (command === 'dev') {
   shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd .`);
 } else if (command === 'webpack') {
   shell.exec(`${bin('webpack')} --config ${pkg('gen/webpack.config.js')} --watch`);
+} else if (command === 'version') {
+  console.log(require('../package.json').version);
 }
 
 function bin(command) {
