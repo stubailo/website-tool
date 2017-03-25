@@ -3,10 +3,10 @@ const path = require('path');
 const nm = path.join(__dirname, '..', 'node_modules');
 
 module.exports = {
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
     filename: 'index.js',
-    path: `${process.cwd()}/../build`
+    path: `${process.cwd()}/build`
   },
   resolveLoader: { modules: [nm] },
   module: {

@@ -5,8 +5,6 @@ var handlebars = require('gulp-compile-handlebars');
 var data = require('gulp-data');
 var fs = require('fs');
 
-console.log("CWD", process.cwd());
-
 // Directory with project files provided by consumer
 const projDir = process.cwd();
 
