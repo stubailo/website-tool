@@ -8,6 +8,8 @@ Make a static HTML page with some CSS, JS, and assets. Contains just the tools y
 
 > If you want to make a serious website with lots of pages, or you need a lot of customization or features, this is probably not going to work for you. You'll be much better served by something like [Gatsby](https://github.com/gatsbyjs/gatsby) or [Hexo](https://github.com/hexojs/hexo).
 
+This tool is 100% convention over configuration. [Check out a site built with it here.](https://github.com/apollographql/dev.apollodata.com)
+
 ## Using the tool
 
 `maw dev` in the root of the project watches the `/src` directory, and puts the output in `/build` whenever files change.
