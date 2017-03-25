@@ -12,6 +12,8 @@ if (! fs.existsSync(path.join(nm, 'babel-loader'))) {
   console.log('second nm', nm);
 }
 
+console.log('babel-preset-env path:', require.resolve('babel-preset-env'));
+
 module.exports = {
   entry: './src/index.js',
   output: {
