@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/stubailo/make-a-website#readme",
   "dependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.2.2",
+    "babel-preset-react": "^6.23.0",
     "command-line-args": "^4.0.2",
     "concurrently": "^3.4.0",
     "gulp": "^3.9.1",
@@ -26,6 +30,7 @@
     "gulp-less": "^3.3.0",
     "live-server": "^1.2.0",
     "nodemon": "^1.11.0",
+    "raw-loader": "^0.5.1",
     "shelljs": "^0.7.7",
     "webpack": "^2.3.1"
   },
