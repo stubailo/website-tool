@@ -1,4 +1,4 @@
-# Make a Website
+# Make a Website (maw)
 
 ```
 npm install maw
