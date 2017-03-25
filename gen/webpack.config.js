@@ -30,8 +30,8 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              require.resolve('babel-preset-env'),
-              require.resolve('babel-preset-react')
+              'babel-preset-env',
+              'babel-preset-react'
             ]
           }
         }
