@@ -4,29 +4,37 @@
 npm install maw
 ```
 
-Make a static HTML page with some CSS, JS, and assets. No BS.
+Make a static HTML page with some CSS, JS, and assets. Contains just the tools you need to write modern code and avoid repeating yourself. A gulpfile and webpack config in a box.
+
+> If you want to make a serious website with lots of pages, or you need a lot of customization or features, don't use this project. You'll be much better served by something like [Gatsby](https://github.com/gatsbyjs/gatsby) or [Hexo](https://github.com/hexojs/hexo).
 
 ## Using the tool
 
+`maw dev` in the root of the project watches the `/src` directory, and puts the output in `/build` whenever files change.
+
 `maw build` builds the site and puts the output in `/build`.
 
-`maw dev` in the root of the project watches the `/src` directory, and puts the output in `/build` whenever files change.
+You probably want to `npm install --save-dev maw` and then add the above commands to a `package.json`, like [in this site](https://github.com/apollographql/dev.apollodata.com/blob/master/package.json).
 
 ## Directories
 
-All of these are nested inside `/src`.
+All of these are nested inside `/src` in the root of your project.
 
 ### /public
 
-This is for static files, these are copied directly into the output.
+This is for static files, which are copied directly into the output. That includes images, fonts, and pre-bundled libraries you want to use.
 
 ### /index.less and /less
 
-`index.less` is compiled into `index.css`, and `/less` is used for imports.
+`index.less` is compiled into `index.css`. The `/less` directory is watched for LESS imports, so basically put everything except `index.less` in there.
 
 ### /index.html and /templates
 
 `index.html` is compiled into `index.html` and any handlebars code is evaluated against the files in `/templates`. The name of the template is the filename without the extension, for example `nav.html` can be included with `{{> nav}}`.
+
+### Multiple `index.html` files
+
+You can nest multiple `index.html` files, for example `/about/index.html`, to give your website multiple pages.
 
 ### /data.js
 
@@ -50,14 +58,8 @@ And then you can use it with:
 
 `index.js` is a JavaScript entry point module that will be compiled with Webpack. Currently, no loaders are enabled.
 
-## Important
-
-- [ ] Support multiple output HTML files/pages, perhaps by crawling all HTML in `/src`.
-- [ ] Don't use nodemon, use Gulp to watch files individually for better efficiency
-
 ## TODO
 
-- [ ] Do JavaScript bundling for the client
 - [ ] Minification
 - [ ] Make it possible to set root directory to either the root of the repo or something other than `/src`
 
