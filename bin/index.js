@@ -3,6 +3,11 @@
 const commandLineArgs = require('command-line-args')
 const shell = require('shelljs');
 const path = require('path');
+const fs = require('fs');
+
+if (! fs.existsSync('src')) {
+  throw new Error('Run from root from project, must have /src directory.');
+}
 
 const optionDefinitions = [
   { name: 'command', type: String, defaultOption: true },
