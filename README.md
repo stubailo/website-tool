@@ -6,7 +6,7 @@ npm install maw
 
 Make a static HTML page with some CSS, JS, and assets. Contains just the tools you need to write modern code and avoid repeating yourself. A gulpfile and webpack config in a box.
 
-> If you want to make a serious website with lots of pages, or you need a lot of customization or features, don't use this project. You'll be much better served by something like [Gatsby](https://github.com/gatsbyjs/gatsby) or [Hexo](https://github.com/hexojs/hexo).
+> If you want to make a serious website with lots of pages, or you need a lot of customization or features, this is probably not going to work for you. You'll be much better served by something like [Gatsby](https://github.com/gatsbyjs/gatsby) or [Hexo](https://github.com/hexojs/hexo).
 
 ## Using the tool
 
@@ -62,4 +62,3 @@ And then you can use it with:
 
 - [ ] Minification
 - [ ] Make it possible to set root directory to either the root of the repo or something other than `/src`
-
