@@ -4,10 +4,12 @@ const fs = require('fs');
 let nm;
 // Are we running from an install?
 nm = path.join(process.cwd(), 'node_modules');
+console.log('first nm', nm);
 
 if (! fs.existsSync(path.join(nm, 'babel-loader'))) {
   // We are running from npm link
   nm = path.join(__dirname, '..', 'node_modules');
+  console.log('second nm', nm);
 }
 
 module.exports = {
