@@ -28,7 +28,7 @@ if (command === 'dev') {
 } else if (command === 'webpack') {
   shell.exec(`${bin('webpack')} --config ${pkg('gen/webpack.config.js')} --watch`);
 } else if (command === 'display') {
-  shell.exec(`sleep 1 && ${bin('live-server')} ../build`);
+  shell.exec(`sleep 1 && ${bin('live-server')} ./build`);
 } else if (command === 'version') {
   console.log(require('../package.json').version);
 }
