@@ -1,9 +1,3 @@
-const path = require('path');
-
-const nm = path.join(__dirname, '..', 'node_modules');
-
-console.log('WEBPACK NODE MODULES:', nm);
-
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -20,8 +14,8 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              path.join(nm, 'babel-preset-env'),
-              path.join(nm, 'babel-preset-react')
+              require.resolve('babel-preset-env'),
+              require.resolve('babel-preset-react')
             ]
           }
         }
