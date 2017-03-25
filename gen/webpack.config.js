@@ -1,3 +1,15 @@
+const path = require('path');
+const fs = require('fs');
+
+let nm;
+// Are we running from an install?
+nm = path.join(process.cwd(), 'node_modules');
+
+if (! fs.existsSync(path.join(nm, 'babel-loader'))) {
+  // We are running from npm link
+  nm = path.join(__dirname, '..', 'node_modules');
+}
+
 module.exports = {
   entry: './src/index.js',
   output: {
