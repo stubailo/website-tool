@@ -2,6 +2,8 @@ const path = require('path');
 
 const nm = path.join(__dirname, '..', 'node_modules');
 
+console.log('WEBPACK NODE MODULES:', nm);
+
 module.exports = {
   entry: './src/index.js',
   output: {

@@ -15,9 +15,9 @@ const optionDefinitions = [
 
 const { command } = commandLineArgs(optionDefinitions);
 
-shell.pushd(__dirname);
+// shell.pushd(__dirname);
 const binPath = shell.exec('npm bin', { silent: true }).stdout.trim();
-shell.popd();
+// shell.popd();
 
 if (command === 'dev') {
   shell.exec(`${bin('concurrently')} "${__filename} display" "${__filename} watch" "${__filename} webpack"`);
