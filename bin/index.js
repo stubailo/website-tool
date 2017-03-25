@@ -1,17 +1,15 @@
 #! /usr/bin/env node
 
-const commandLineArgs = require('command-line-args')
+const commandLineArgs = require('command-line-args');
 const shell = require('shelljs');
 const path = require('path');
 const fs = require('fs');
 
-if (! fs.existsSync('src')) {
+if (!fs.existsSync('src')) {
   throw new Error('Run from root from project, must have /src directory.');
 }
 
-const optionDefinitions = [
-  { name: 'command', type: String, defaultOption: true },
-]
+const optionDefinitions = [{ name: 'command', type: String, defaultOption: true }];
 
 const { command } = commandLineArgs(optionDefinitions);
 
@@ -20,7 +18,9 @@ const binPath = shell.exec('npm bin', { silent: true }).stdout.trim();
 // shell.popd();
 
 if (command === 'dev') {
-  shell.exec(`${bin('concurrently')} "${__filename} display" "${__filename} watch" "${__filename} webpack"`);
+  shell.exec(
+    `${bin('concurrently')} "${__filename} display" "${__filename} watch" "${__filename} webpack"`
+  );
 } else if (command === 'watch') {
   shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd src watch`);
 } else if (command === 'build') {

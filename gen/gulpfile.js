@@ -16,10 +16,13 @@ gulp.task('default', ['less', 'html', 'public']);
 const LESS_INDEX = 'index.less';
 const LESS_IMPORTS = 'less/**/*';
 gulp.task('less', () => {
-  return gulp.src(LESS_INDEX)
-    .pipe(less({
-      paths: [ path.join(projDir, 'less') ]
-    }))
+  return gulp
+    .src(LESS_INDEX)
+    .pipe(
+      less({
+        paths: [path.join(projDir, 'less')],
+      })
+    )
     .pipe(gulp.dest('../build/'));
 });
 
@@ -62,29 +65,20 @@ gulp.task('html', () => {
   const options = {
     batch,
     helpers: {
-      env: (desiredEnv) => {
+      env: desiredEnv => {
         return data.NODE_ENV === desiredEnv;
-      }
-    }
+      },
+    },
   };
 
-  return gulp.src(HTML_INDEX)
-    .pipe(handlebars(data, options))
-    .pipe(gulp.dest('../build'));
-})
+  return gulp.src(HTML_INDEX).pipe(handlebars(data, options)).pipe(gulp.dest('../build'));
+});
 
 gulp.task('watch', ['less', 'public', 'html'], () => {
-  console.log('RUNNING GULP')
-  gulp.watch([
-    LESS_INDEX,
-    LESS_IMPORTS
-  ], ['less']);
+  console.log('RUNNING GULP');
+  gulp.watch([LESS_INDEX, LESS_IMPORTS], ['less']);
 
   gulp.watch(PUBLIC_DIR, ['public']);
 
-  gulp.watch([
-    DATA_PATH,
-    TEMPLATES_PATH,
-    HTML_INDEX,
-  ], ['html']);
-})
+  gulp.watch([DATA_PATH, TEMPLATES_PATH, HTML_INDEX], ['html']);
+});
