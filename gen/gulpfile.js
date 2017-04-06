@@ -4,6 +4,7 @@ var path = require('path');
 var handlebars = require('gulp-compile-handlebars');
 var data = require('gulp-data');
 var fs = require('fs');
+var cleanCSS = require('gulp-clean-css');
 
 // Directory with project files provided by consumer
 const projDir = process.cwd();
@@ -81,4 +82,10 @@ gulp.task('watch', ['less', 'public', 'html'], () => {
   gulp.watch(PUBLIC_DIR, ['public']);
 
   gulp.watch([DATA_PATH, TEMPLATES_PATH, HTML_INDEX], ['html']);
+});
+
+gulp.task('prod', ['less', 'public', 'html'], () => {
+  gulp.src('../build/index.css')
+    .pipe(cleanCSS())
+    .pipe(gulp.dest('../build'));
 });
