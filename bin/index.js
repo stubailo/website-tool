@@ -24,7 +24,7 @@ if (command === 'dev') {
 } else if (command === 'watch') {
   shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd src watch`);
 } else if (command === 'build') {
-  shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd src`);
+  shell.exec(`${bin('gulp')} --gulpfile ${pkg('gen/gulpfile.js')} --cwd src prod`);
   shell.exec(`${bin('webpack')} --config ${pkg('gen/webpack.config.js')}`);
 } else if (command === 'webpack') {
   shell.exec(`${bin('webpack')} --config ${pkg('gen/webpack.config.js')} --watch`);
