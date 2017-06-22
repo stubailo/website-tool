@@ -31,7 +31,8 @@ gulp.task('public', () => {
 
 const DATA_PATH = path.join(projDir, 'data.js');
 console.log('DATA', DATA_PATH);
-const TEMPLATES_PATH = path.join(projDir, 'templates', "**", "*.html");
+const TEMPLATES_PATH = path.join(projDir, 'templates');
+const TEMPLATES_WATCH_PATH = path.join(TEMPLATES_PATH, "**", "*.html");
 const HTML_INDEX = path.join(projDir, '**', 'index.html');
 gulp.task('html', () => {
   let data = {};
@@ -85,7 +86,7 @@ gulp.task('watch', ['less', 'public', 'html'], () => {
 
   gulp.watch([
     DATA_PATH,
-    TEMPLATES_PATH,
+    TEMPLATES_WATCH_PATH,
     HTML_INDEX,
   ], ['html']);
 });
