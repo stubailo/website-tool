@@ -5,6 +5,7 @@ var handlebars = require('gulp-compile-handlebars');
 var data = require('gulp-data');
 var fs = require('fs');
 var cleanCSS = require('gulp-clean-css');
+const filter = require('gulp-filter');
 
 // Directory with project files provided by consumer
 const projDir = process.cwd();
@@ -33,7 +34,7 @@ const DATA_PATH = path.join(projDir, 'data.js');
 console.log('DATA', DATA_PATH);
 const TEMPLATES_PATH = path.join(projDir, 'templates');
 const TEMPLATES_WATCH_PATH = path.join(TEMPLATES_PATH, "**", "*.html");
-const HTML_INDEX = path.join(projDir, '**', 'index.html');
+const HTML_PAGES = path.join(projDir, '**', '*.html');
 gulp.task('html', () => {
   let data = {};
 
@@ -70,7 +71,10 @@ gulp.task('html', () => {
     }
   };
 
-  return gulp.src(HTML_INDEX)
+  const skipTemplates = filter('!' + TEMPLATES_PATH + '/**');
+
+  return gulp.src(HTML_PAGES)
+    .pipe(skipTemplates)
     .pipe(handlebars(data, options))
     .pipe(gulp.dest('../build'));
 })
@@ -87,7 +91,7 @@ gulp.task('watch', ['less', 'public', 'html'], () => {
   gulp.watch([
     DATA_PATH,
     TEMPLATES_WATCH_PATH,
-    HTML_INDEX,
+    HTML_PAGES,
   ], ['html']);
 });
 
