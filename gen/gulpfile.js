@@ -22,6 +22,7 @@ gulp.task('less', () => {
     .pipe(less({
       paths: [ path.join(projDir, 'less') ]
     }))
+    .on('error', handleError)
     .pipe(gulp.dest('../build/'));
 });
 
@@ -100,3 +101,8 @@ gulp.task('prod', ['less', 'public', 'html'], () => {
     .pipe(cleanCSS())
     .pipe(gulp.dest('../build'));
 });
+
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
