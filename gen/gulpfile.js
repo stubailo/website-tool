@@ -72,7 +72,7 @@ gulp.task('html', () => {
     }
   };
 
-  const skipTemplates = filter('!' + TEMPLATES_WATCH_PATH);
+  const skipTemplates = filter(file => !/templates/.test(file.path));
 
   return gulp.src(HTML_PAGES)
     .pipe(skipTemplates)
